@@ -1,0 +1,9 @@
+int gcd(int n, int m) {
+    if (m <= n) {
+    if(a%b==0)
+    return b;
+         return gcd(b,a%b);
+    } else {
+        return gcd(m, n);
+    }
+}

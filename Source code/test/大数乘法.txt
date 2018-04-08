@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <string.h>
+#define MAX	505
+char x[MAX];					//第一组数
+char y[MAX];					//第二组数
+void reverseOrder(char* str, int q)	//数组翻转
+{
+    char temp;
+	int p=0;
+    while(p < q)
+    {
+        temp = str[p];
+        str[p] = str[q];
+        str[q] = temp;
+        p ++;
+        q --;
+    }
+}
+char * multiLargeNum(char *A,char *B){		//大数相乘函数
+	int m= strlen(A);
+	int n=strlen(B);
+	char *result=(char*)malloc((m+n)*sizeof(char));	//设置想乘数的总长度
+	memset(result,0,m+n);			
+	result[m+n]='\0';
+	int mulFlag;	//乘法进位
+	int addFlag;	//加法进位
+	reverseOrder(A, m-1);
+    reverseOrder(B, n-1);
+	int i,j;
+	for(i=0;i<n-1;i++){		//循环模拟位相乘
+		mulFlag=0;
+		addFlag=0;
+		for(j=0;j<m-1;j++){
+			int temp1=(A[j]-48)*(B[i]-48)+mulFlag;		//求出两数的积
+			mulFlag=temp1/10;							//取出乘法进位
+			temp1=temp1%10;								//结果取余保存
+			int temp2=(result[i+j]-48)+temp1+addFlag;	//结果与位置当前的大小相加并加上之前的进位
+			addFlag=temp2/10;							//取出加法进位
+			result[i+j]=temp2%10+48;					//将结果取余赋值给数组
+		}
+		result[i+j-2]=mulFlag+addFlag;			//最后多出来的进位填到最末
+	}				
+	reverseOrder(result, m+n-1);	
+	return result;
+}	
+int main(){
+	gets(x);
+    gets(y);
+    char *res = multiLargeNum(x, y);
+    int i=0,j=1;
+    for(i=0;i<strlen(res);i++){
+        if(res[i]=='0'&&j==1){
+            if(i==strlen(res)-1)
+                printf("%c",res[i]);
+            continue;}
+        printf("%c",res[i]);
+        j=0;
+    }
+    delete [] res;
+    return 0;
+}

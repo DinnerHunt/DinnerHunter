@@ -1,0 +1,37 @@
+#include<cstdio>  
+#include<cstring>  
+#include<cctype>  				//用于判断是否是数字
+#define mod 10000  
+using namespace std;  
+  
+int s[10],n[10];  				//s存符号 n存数字
+  
+void work()  
+{  
+  int i=s[0],j=n[0];  			//取出字符数量和数字数量
+  if(s[i]==1)n[j-1]=(n[j-1]+n[j])%mod;   //如果字符的第i为+号，则相加n的最后两个数,并存入倒数第二个
+  else n[j-1]=(n[j-1]*n[j])%mod;  		 //如果为*号，则相乘的最后两个数,并存入倒数第二个数中
+  s[0]--,n[0]--;  						//符号和数字减一
+}  
+  
+int main()  
+{  
+  //freopen("1.in","r",stdin);  
+  char tmp;  int i,j=0,k=0;  		//k存数字，i判断符号，
+  while(scanf("%c",&tmp)!=EOF)  	//读取字符 如果不是数字则执行
+    if(!isdigit(tmp))  
+      {  
+        n[++n[0]]=k%mod;  			//将k取余后存入k  n[0]用来储存位数，n[0]++
+        k=i=j=0;  					//赋值后k,j,i=0
+        if(tmp=='+')i=1;  			//如果是+则i为1
+        if(tmp=='*')i=2;  			//如果*则i为2
+        if(i==0)break;  			//如果符号不是+或*则退出循环，表示结尾
+        while(s[0]>0 && s[s[0]]>=i)work();	//如果符号数组中存有符号0,并且s中之前的优先级大于或等于现在的优先级，则把前面两个数相加
+        s[++s[0]]=i;  				//将现在的符号存入数组s中 s[0]++
+      }  
+      else j=1,k=k*10+tmp-'0';  	//如果为数字，则把数字存入k
+  if(j==1)n[++n[0]]=k%mod;      	
+  while(s[0]>0)work();  
+  printf("%d\n",n[1]);      
+  return 0;  
+} 

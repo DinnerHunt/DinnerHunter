@@ -9,8 +9,8 @@ int fx[6]={1,-1,0,0,0,0},fy[6]={0,0,-1,1,0,0},fz[6]={0,0,0,0,1,-1};
 struct node{
 	int x,y,z;
 }nod;
-queue<node> que;
 void bfs(){
+    queue<node> que;
 	nod.x=qx;
 	nod.y=qy;
 	nod.z=qz;
@@ -21,7 +21,7 @@ void bfs(){
 		que.pop();
 		for(int i=0;i<6;i++){
 			int x=nod1.x+fx[i],y=nod1.y+fy[i],z=nod1.z+fz[i];
-			if(x>=0&&x<a&&y>=0&&y<b&&z>=0&&z<c&&flag[x][y][z]==-1&&G[x][y][z]=='.'){
+			if(x>=0&&x<a&&y>=0&&y<b&&z>=0&&z<c&&flag[x][y][z]==-1&&G[x][y][z]!='#'){
 				if(x==zx&&y==zy&&z==zz){
 					printf("Escaped in %d minute(s).\n",flag[nod1.x][nod1.y][nod1.z]+1);
 					return;

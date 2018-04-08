@@ -1,3 +1,44 @@
+<<<<<<< HEAD
+#include <iostream>
+using namespace std;  
+const int maxn = 101;  
+char g[maxn][maxn];
+int n,m;  
+int d[4][2] = {0 , 1 , 1 , 0 , 0 , -1 , -1 ,0};  
+void dfs(int si , int sj)  
+{  
+    char ch = g[si][sj];
+    g[si][sj] = '1';  
+    for(int i = 0 ; i < 4 ; i ++){  
+        int x = si + d[i][0];  
+        int y = sj + d[i][1];  
+        if(x < 0 || x >= n || y < 0 || y >= m || g[x][y] != ch) continue;  
+        dfs(x , y);  
+    }  
+}  
+  
+int main()  
+{  
+    while(cin >> n >> m){  
+        if(n == 0 && m == 0) break;  
+        string str;  
+        for(int i = 0 ; i < n ; i ++){  
+            cin >> str;  
+            for(int j = 0 ; j < m ; j ++)
+                g[i][j] = str[j];  
+        }  
+        int cnt = 0;  
+        for(int i = 0 ; i < n ; i ++)
+            for(int j = 0 ; j < m ; j ++)
+                if(g[i][j] != '1'){  
+                    dfs(i , j);  
+                    cnt ++;  
+                }
+        cout << cnt << endl;  
+  
+    }  
+}  
+=======
 //Aizu 0118
 //DinnerHunt
 #include <cstdio>
@@ -32,3 +73,4 @@ int main(){
 	}
 	return 0;
 }
+>>>>>>> 4f5007a35fbada46c92474a74b101bfdba54f701

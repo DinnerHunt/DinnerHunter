@@ -1,24 +1,20 @@
 //P1311 选择客栈
 //DinnerHunt
-#include<cstdio>
-#include<cstring>
-#include<stack>
+#include <cstdio>
 using namespace std;
-stack<int> stk[50];
-int arr[50],last[50];
+const int maxn = 200005;
+int last[maxn],sum[maxn],col[maxn],now,ans;
+int n,c,p,k;
 int main(){
-	int x,y,z,a,b,j=0,ans=0;
-	memset(last,-1,sizeof(last));
-	scanf("%d %d %d"，&x,&y,&z);
-	for(int i=0;i<;i++){
-		scanf("%d %d",&a,&b);
-		if(b<=z) j=i;
-		if(last[a]!=-1){
-			stk.push(last[a]<=j?1:0);
-		}
-	}
-	for(int i=0;i<y;i++){
-
+	scanf("%d %d %d",&n,&k,&p);
+	for(int i=1;i<=n;i++){
+		scanf("%d %d",&c,&k);
+		if(k<=p) now = i;
+		if(now >= last[c])
+			sum[c] = col[c];
+		last[c] = i;
+		ans += sum[c];
+		col[c]++;
 	}
 	printf("%d",ans);
 	return 0;

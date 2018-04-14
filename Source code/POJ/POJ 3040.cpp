@@ -6,7 +6,7 @@ struct node{
 	int x,y;
 	bool operator < (const node &c) const 
 	{
-		return x<c.x;
+		return y>c.x;
 	}
 }arr[25];
 int main()
@@ -16,17 +16,9 @@ int main()
 	{
 		for(int i=0;i<n;i++)
 			scanf("%d %d",&arr[i].x,&arr[i].y);
-	}
-	sort(arr,arr+n);
-	int right=0,ans=0;
-	for(int i=0;i+right<n;i++)
-	{
-		if(arr[n-right-1]>=m)
-		{
-			ans++;
-			right++;
-		}
-		else
+		sort(arr,arr+n);
+		int right=0,ans=0;
+		for(int i=0;i+right<n;i++)
 		{
 			
 		}

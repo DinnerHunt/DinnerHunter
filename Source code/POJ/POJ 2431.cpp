@@ -4,19 +4,20 @@
 using namespace std;
 const int maxd = 10005;
 priority_queue<int> que;
-queue<int> k;
+stack<int> k;
 int arr[maxd];
 int main(){
 	int a,b,ans=0,n,last=0;
 	scanf("%d",&n);
-	for(int i=0;i<n;i++){
+	for(int i=0;i<n;i++)
+	{
 		scanf("%d %d",&arr[i],&a);
 		k.push(a);
 	}
 	scanf("%d %d",&a,&b);
 	for(int i=0;i<n;i++)
 	{
-		if(b>=arr[i]-last) b-=arr[i];
+		if(b>=arr[i]-last) b-=arr[i]-last;
 		else if(!que.empty())
         {
 			do{
@@ -32,8 +33,8 @@ int main(){
 			return 0;
 		}
 		last = arr[i];
-		que.push(que.front());
-		que.pop();
+		que.push(k.top());
+		k.pop();
 	}
 	printf("%d",ans);
 	return 0;

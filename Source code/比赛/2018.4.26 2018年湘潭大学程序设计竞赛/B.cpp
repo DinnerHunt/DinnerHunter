@@ -1,7 +1,7 @@
 #include <cstdio>
-#include <queue>
 using namespace std;
+int arr[100][100];
 int main(){
-	scanf("%d %d")
+	
 	return 0;
 }

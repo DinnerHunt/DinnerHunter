@@ -12,5 +12,8 @@ int v,e;
 vector<node> G[maxd];
 int main(){
 	scanf("%d %d",&v,&e);
+	for(int i=0;i<v;i++){
+		
+	}
 	return 0;
 }

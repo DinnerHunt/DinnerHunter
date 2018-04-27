@@ -32,7 +32,7 @@ int main(){
 	scanf("%d",&t);
 	for(int s=0;s<t;s++){
 		scanf("%d %d %d",&a,&b,&c);
-			while(tim[k]<=c){
+			while(tim[k]<=c&&k<v){
 				for(int i=0;i<v;i++)
 					for(int j=0;j<v;j++)
 						dp[i][j] = min(dp[i][k]+dp[k][j],dp[i][j]);

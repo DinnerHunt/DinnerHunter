@@ -22,14 +22,7 @@ int main(){
 		for(int k=0;k<m;k++)
 		{
 			scanf("%d",&a);
-			for(int l=0;l<=n;l++)
-			{
-				if(l==n) printf("0\n");
-				else if(a>=arr[l].x){
-					printf("%d\n",arr[l].y);
-					break;
-				}
-			}
+			
 		}
 	}
 	return 0;

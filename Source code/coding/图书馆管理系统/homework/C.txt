@@ -1,0 +1,58 @@
+
+void hs3(){
+	char str[100];
+	int id,last=0,flag=1;
+	printf("请输入需要删除书籍的编号\n");
+	scanf("%d",&id);
+	for(int i=right[last];i;last = i,i=right[i])
+		if(table[i].id == id){
+			flag = 0;
+			right[last] = right[i];
+		}
+	if(flag) printf("编号不存在！！！！\n");
+	else printf("书籍删除成功！！！！\n");
+	printf("按任意键返回!");
+	str[0] = getchar();
+	str[0] = getchar();
+	home();
+}
+void hs4(){
+	int flag=0;
+	char str[100];
+	printf("请输出是出借,还是归还(1.出借  2.归还) : ");
+	scanf("%d",&data[tim].flag);
+	printf("请输入书籍编号 : ");
+	scanf("%d",&data[tim].id);
+	for(int i= right[0];i;i=right[i])
+		if(table[i].id == data[tim].id)
+			flag = 1;
+	if(!flag)
+	{
+		printf("编号不存在!!!!!\n"); 
+		printf("按任意键返回!");
+		str[0] = getchar();
+		str[0] = getchar();
+		home();
+	}
+	printf("请输入时间 (格式为 2010.1.1)  :");
+	scanf("%d.%d.%d",&data[tim].year,&data[tim].month,&data[tim].day);
+	if(data[tim].month<=0||data[tim].month>12||data[tim].day<=0||data[tim].day >arr[data[tim].month])
+	{
+		printf("输入日期不合法!!!!!\n"); 
+		printf("按任意键返回!");
+		str[0] = getchar();
+		str[0] = getchar();
+		home();	
+	}
+	printf("请输入借书者姓名 ： ");
+	scanf("%s",str);
+	strncpy(data[tim].name,str,100);
+	printf("请输入班级编号: ");
+	scanf("%d",&data[tim].grades);
+	tim++;
+	printf("书籍借入信息登记成功!!!\n");
+	printf("按任意键返回!");
+	str[0] = getchar();
+	str[0] = getchar();
+	home();
+}

@@ -1,0 +1,94 @@
+
+void hs5(){
+	char str[100];
+	int number,flag,last=0,money;
+	book book1;
+	printf("请选择排序的标签 ( 1.价格  2.编号 ) :  ");
+	scanf("%d",&number);
+	printf("	书籍名称	作者		发行商		价格	 编号\n");
+		flag =1;
+		while(flag){
+			flag = 0;
+			money = 100000000;
+			for(int i=right[0];i;i=right[i]){
+				switch(number)
+				{
+					case 1:
+						if(table[i].money < money && table[i].money > last){
+							strncpy(book1.name,table[i].name,100);
+							strncpy(book1.publisher,table[i].publisher,100);
+							strncpy(book1.writer,table[i].writer,100);
+							money = table[i].money;
+							book1.money = table[i].money;
+							book1.id = table[i].id;
+							flag = 1;
+						}
+						break;
+					case 2:
+						if(table[i].id < money && table[i].id > last){
+								strncpy(book1.name,table[i].name,100);
+								strncpy(book1.publisher,table[i].publisher,100);
+								strncpy(book1.writer,table[i].writer,100);
+								money = table[i].id;
+								book1.money = table[i].money;
+								book1.id = table[i].id;
+								flag = 1;
+							}
+							break;
+				}
+			}
+			last = money;
+			if(flag)
+				printf("	%s 	  	%s 	  	 %s 	 	%d 	  %d\n",book1.name,book1.writer,book1.publisher,book1.money,book1.id);
+		}
+	printf("按任意键返回!");
+	str[0] = getchar();
+	str[0] = getchar();
+	home();
+}
+void hs6(){
+	char str[100];
+	int number;
+	int year,month,day,id,flag=0,i;
+	printf("请入需要搜索的信息 (1.日期 2.姓名 3.书籍编号)");
+	scanf("%d",&number);
+	printf("\n 	书籍编号   借出/借入  借者	  班级	    日期 \n");
+	switch(number){
+		case 1:
+			printf("请输入需要查找的日期 (例 2008.1.1) :");
+			scanf("%d.%d.%d",&year,&month,&day);
+			for(i=0;i<tim;i++)
+				if(data[i].year == year&&data[i].month == month && data[i].day == day)
+					printf("	%d 	       %d          %s     %d 	    %d/%d/%d\n",data[i].id,data[i].flag,data[i].name,data[i].grades,data[i].year,data[i].month,data[i].day);
+		break;
+		case 2:
+			printf("请输入需要查找的名字 :");
+			scanf("%s",str);
+			for(i=0;i<tim;i++)
+					if(check(data[i].name,str))
+						printf("	%d 	       %d          %s     %d 	    %d/%d/%d\n",data[i].id,data[i].flag,data[i].name,data[i].grades,data[i].year,data[i].month,data[i].day);
+		break;
+		case 3:
+			printf("请输入需要查找的书籍编号 :");
+			scanf("%d",&id);
+			for(i=0;i<tim;i++)
+					if(data[i].id == id)
+						printf("	%d 	       %d          %s     %d 	    %d/%d/%d\n",data[i].id,data[i].flag,data[i].name,data[i].grades,data[i].year,data[i].month,data[i].day);
+		break;
+	}
+	printf("按任意键返回!");
+	str[0] = getchar();
+	str[0] = getchar();
+	home();
+}
+void hs7(){
+	char str[100];
+	printf("\n 	书籍编号   借出/借入  借者	  班级	    日期 \n");
+	for(int i=0;i<tim;i++)
+	printf("	%d 	       %d          %s     %d 	    %d/%d/%d\n",data[i].id,data[i].flag,data[i].name,data[i].grades,data[i].year,data[i].month,data[i].day);
+	printf("\n\n");
+	printf("按任意键返回!");
+	str[0] = getchar();
+	str[0] = getchar();
+	home();
+}

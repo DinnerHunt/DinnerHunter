@@ -1,0 +1,89 @@
+#include "stdafx.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+const int maxd = 1000;	
+struct book{						//记录书籍信息
+	char name[100];					//书籍姓名
+	char writer[100];				//作者
+	char publisher[100];			//发行商
+	int id,money;					//书籍的编号与价格
+}table[maxd];						//用数组记录所有信息
+int size,right[maxd],tim;			//size书在table表中的位子，right数组模拟链表操作，方便删除记录， tim是用来统计有多少出借信息的
+struct recode{
+	int flag,grades,id;
+	int year,month,day;
+	char name[100];
+}data[maxd];
+int arr[13] = {0,31,28,31,30,31,30,31,31,30,31,30,31};
+void home();
+int check(char *a,char *b){			// 判断两个字符串是否相等
+	int len1 = strlen(a);
+	int len2 = strlen(b);
+	if(len1 != len2 ) return 0;
+	for(int i=0;i<len1;i++)
+		if(a[i]!=b[i]) return 0;
+	return 1;
+}
+
+void home(){
+		system("cls");
+		printf("     *    coding by 腾达科技有限公式  *     \n");
+		printf("     **********************************     \n");
+		printf("     *	  图书馆书籍管理系统          *		\n");
+		printf("     *   ==========================   *		\n");
+		printf("     *   1. 添加书籍                  *		\n");
+		printf("     *   2. 修改书籍属性              *		\n");
+		printf("     *   3. 删除书籍                  *     \n"); 
+		printf("     *   4. 添加出借记录              *     \n"); 
+		printf("     *   5. 查看所有书籍情况          *     \n");
+		printf("     *   6. 搜索书籍出借情况          *     \n"); 
+		printf("     *   7. 查看所有出借情况          *     \n");
+		printf("     *   8. 退出			          *     \n");
+		printf("     **********************************     \n");
+		printf("  请选择你需要的操作:  ");
+		int k; 
+		char ch;
+		scanf("%d",&k);
+		ch = getchar();
+		switch(k){
+			case 1:
+				hs1();
+				break;
+			case 2:
+				hs2();
+				break;
+			case 3:
+				hs3();
+				break;
+			case 4:
+				hs4();
+				break;
+			case 5:
+				hs5();
+				break;
+			case 6:
+				hs6();
+				break;
+			case 7:
+				hs7();
+				break;
+			case 8:
+				printf("  按回车退出系统 \n");
+				ch = getchar();
+				return;
+			default:
+				printf("  请输入正确的编号!!!!\n");
+				printf("  按回车继续！");  
+				ch = getchar();
+				home();
+				break;
+		}
+}
+
+int main(int argc, char* argv[])
+{
+	home(); 
+	return 0;
+}
+

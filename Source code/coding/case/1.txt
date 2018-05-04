@@ -1,0 +1,23 @@
+#include <stdio.h>
+int arr1[500],arr2[500];
+int main(){
+	int a,b,c=0,ans=0;
+	printf("请输入有几组数据((A,B)的数量)：");
+	scanf("%d",&a);
+	for(int i=1;i<=a;i++)
+	{
+		printf("请输入A%d的数值 ：",i);
+		scanf("%d",&arr1[i]);
+		printf("请输入B%d的值(A%d的数量) ：",i,i);
+		scanf("%d",&arr2[i]);
+	}
+	for(int i=1;i<=a;i++)
+	{
+		for(int j=1;j<=arr2[i];j++)
+		{
+			ans+=arr1[i];
+			printf("C%d = %d\n",++c,ans);
+		}
+	}
+	return 0;
+}

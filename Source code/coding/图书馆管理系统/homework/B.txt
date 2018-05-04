@@ -1,0 +1,72 @@
+void hs1(){
+	char str[100];
+	int number;
+	printf("书籍的属性 - - - 名称 作者 发行商 编号 价格 \n");
+	right[size] = size+1;
+	size++;
+	printf("请输入书籍名称: ");
+	scanf("%s",str);
+	strncpy(table[size].name,str,100);
+	printf("请输入书籍的作者: ");
+	scanf("%s",str);
+	strncpy(table[size].writer,str,100);
+	printf("请输入书籍的发行商: ");
+	scanf("%s",str);
+	strncpy(table[size].publisher,str,100);
+	printf("请输入书籍的编号: ");
+	scanf("%d",&number);
+	table[size].id = number;
+	printf("请输入书籍的价格: ");
+	scanf("%d",&number);
+	table[size].money = number;
+	printf("第%d书籍添加成功！！！！\n",size);
+	printf("按任意键返回!");
+	str[0] = getchar();
+	str[0] = getchar();
+	home();
+}
+void hs2(){
+	int number,id;
+	char str[100];
+	printf("请输入需要修改书籍的编号: ");
+	scanf("%d",&id);
+	int i;
+	for(i=right[0];i;i=right[i])
+		if(table[i].id == id)
+			id = i;
+	if(!id) { 
+		printf("输入书籍编号不存在!!!!\n");
+		printf("按任意键返回!");
+		str[0] = getchar();
+		str[0] = getchar();
+		home();
+	}
+	printf("请输入需要修改的选项( 1.书籍名称  2.作者  3.发行商  4.价格  5.编号 ) :  ");
+	scanf("%d",&number);
+	switch(number){
+		case 1:
+			printf("请输入新的书籍名称 :");
+			scanf("%s",table[id].name);
+			break;
+		case 2:
+			printf("请输入新的书籍作者 :");
+			scanf("%s",table[id].writer);
+			break;
+		case 3:
+			printf("请输入新的书籍发行商 :");
+			scanf("%s",table[id].publisher);
+			break;
+		case 4:
+			printf("请输入新的书籍价格 :");
+			scanf("%d",table[id].money);
+			break;
+		case 5:
+			printf("请输入新的编号 :");
+			scanf("%d",table[id].id);
+	}
+	printf("信息修改成功！！！！\n");
+	printf("按任意键返回!");
+	str[0] = getchar();
+	str[0] = getchar();
+	home();
+}

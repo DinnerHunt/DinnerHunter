@@ -1,58 +1,65 @@
 #include <cstdio>
 #include <vector>
 #include <queue>
-#include <algorithm>
 using namespace std;
-const int maxd = 30005;
+const int maxd = 1005;
+const int inf = 1e9;
 struct node{
     int to,cost;
 };
 vector<node> G[maxd];
-int inq[maxd],dist[maxd];
-int v,e,s;
-void SPFA(int s){
+int v,ml,md,dist[maxd],flag,cnt[maxd];
+bool inq[maxd];
+void spfa(){
     queue<int> que;
-    fill(dist,dist+2,1e9); 
-    inq[s] = 1;
-    dist[s] = 0;
-    que.push(s);
+    fill(dist+1,dist+1+v,inf);
+    dist[1] = 0;
+    inq[1] = true;
+    cnt[1] = 1;
+    que.push(1);
     while(!que.empty())
     {
-        int k = que.front();que.pop();
-        inq[k] = 0;
+        int k = que.front();
+        que.pop();
+        inq[k] = false;
         for(int i=0;i<G[k].size();i++)
         {
             node nod = G[k][i];
-            if(dist[nod.to] > dist[k] + nod.cost)
+            if(dist[nod.to] > dist[k]+nod.cost)
             {
-                dist[nod.to]  = dist[k]+nod.cost;
-                if(!inq[nod.to])
+                dist[nod.to] = dist[k]+ nod.cost;
+                if(!inq[k])
                 {
-                    que.push(nod.to);
-                    inq[nod.to] =1;
+                    inq[k] = true;
+                    que.push(k);
+                    if(cnt[k]++ == v)
+                    {
+                        flag = -1;
+                        return ;
+                    }
                 }
             }
         }
+
     }
+    if(dist[v] == inf) flag = -2;
 }
 int main(){
     int a,b,c;
-    scanf("%d %d",&v,&e);
-    s = v+1;
-    for(int i=0;i<=v;i++) G[s].push_back(node{i,0});
-    for(int i=0;i<e;i++)
+    scanf("%d %d %d",&v,&ml,&md);
+    for(int i=2;i<=v;i++) G[i].push_back(node{i-1,0});
+    for(int i=0;i<ml;i++)
     {
         scanf("%d %d %d",&a,&b,&c);
-        G[b].push_back(node{a-1,-c});
+        G[a].push_back(node{b,c});
     }
-    for(int i=1;i<=v;i++)
+    for(int i=0;i<md;i++)
     {
-        G[i].push_back(node{i-1,0});
-        G[i-1].push_back(node{i,1});
+        scanf("%d %d %d",&a,&b,&c);
+        G[b].push_back(node{a,-c});
     }
-    SPFA(s);
-    int minx = 1e9;
-    for(int i=0;i<=v;i++) minx = min(minx,dist[i]);
-    printf("%d",dist[v] - minx);
+    spfa();
+    if(flag) printf("%d",flag);
+    else printf("%d",dist[v]);
     return 0;
 }

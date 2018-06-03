@@ -1,33 +1,32 @@
-//P1865 A%B Problem
-//DinnerHunt
-#include<cstdio>
+#include <cstdio>
 using namespace std;
-const int maxn = 1000000;
-int prime[maxn],arr[maxn],n,m;
+const int maxd = 1000005;
+int n,m;
+int	prime[maxd];
+int check[maxd];
+int arr[maxd]
 void init(){
-    prime[1]=1;
-    for(int i=2;i*i<=m;i++)
-        if(!prime[i]){
-            for(int j=i*i;j<=m;j+=i)
-                prime[j]=1;
-        }
-    for(int i=1;i<=m;i++){
-        if(prime[i])
-            arr[i] = arr[i-1];
-        else 
-            arr[i] = arr[i-1]+1;
-    }
+	int pos =0;
+	for(int i=2;i<=m;i++)
+	{
+		if(!check[i])
+			prime[pos]++ = i;
+		for(j = i+i ; j<=m; j++)
+			check[j] = 1;
+	}
+	for(int i=2;i<=m;i++)
+		if(!check[i])
+			arr[i] = arr[i-1]+1;
+		else 
+			arr[i] = arr[i-1];
 }
 int main(){
-    long long x,y;
 	scanf("%d %d",&n,&m);
-    init();
-    for(int i=0;i<n;i++){
-        scanf("%lld %lld",&x,&y);
-        if(x<1||y>m)
-            printf("Crossing the line\n");
-        else
-            printf("%d\n",arr[y]-arr[x-1]);
-    }
+	for(int i=0;i<n;i++)
+	{
+		scanf("%d %d",&a,&b);
+		if(a<0||b>m) printf("Crossing the line\n");
+		else printf("%d",arr[b] - arr[a-1]);
+	}
 	return 0;
 }

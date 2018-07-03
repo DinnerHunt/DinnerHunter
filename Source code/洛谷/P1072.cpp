@@ -1,34 +1,28 @@
+//gcd(x/a1,a0/a1) = 1;
+//gcd(b1/b0,b1/x) = 1;
 #include <cstdio>
-#include <cstring>
 using namespace std;
-const int maxd = 500005;
-int n,tree[maxd],have[maxd],last[maxd],arr[maxd];
-int getsum(int x,){
-	int ans = 0;
-	for(;x;x-=(x&-x))
-		ans += tree[x];
-	return x;
+int gcd(int x,int y){
+	if(!y) return x;
+	return gcd(y,x%y);
 }
-void change(int x){
-	for(;x<=n;x+=(x&-x))
-		tree[x]+=1;
+int ans,a,b,c,d,n;;
+void ok(int x){
+	if(gcd(x/b,a/b)==1&&gcd(d/c,d/x)==1) ans++;
 }
 int main(){
-	int a;
 	scanf("%d",&n);
-	for(int i=1;i<=n;i++){
-		scanf("%d",&arr[i])
-		if(!have[arr[i]]){
-			have[arr[i]]=1;
-			change(i);
+	for(int i=0;i<n;i++){
+		scanf("%d %d %d %d",&a,&b,&c,&d);
+		ans = 0;
+		for(int j=1;j*j<=d;j++){
+			if(d%j==0)
+			{
+				if(j%b==0) ok(j);
+				if((d/j)%b==0&&j*j!=d) ok(d/j);
+			}
 		}
-	}
-	memset(have,0,sizeof(have));
-	for(int i=n;i>=1;i--)
-	{
-		if(!have[arr[i]]) change(n+1);
-		else last[arr[i]] = have[arr[i]];
-		have[arr[i]] = i;
+		printf("%d\n",ans);
 	}
 	return 0;
 }
